@@ -1,0 +1,15 @@
+{
+    "background_color": "white",
+    "description": "A tracker for space-time distortions in Pokemon Legends:  Arceus",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "icon/arc-phone.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "name": "Space-Time Distortion Tracker",
+    "short_name": "Distortion Tracker",
+    "start_url": "/tracker.html"
+  }
