@@ -1,4 +1,4 @@
-body {
+/* body {
     background-image: linear-gradient(
     45deg,
     hsl(2deg 74% 23%) 0%,
@@ -13,4 +13,11 @@ body {
     hsl(251deg 76% 17%) 99%,
     hsl(238deg 97% 13%) 100%
     );
+} */
+#app {
+    width: 100%;
+    height: 100%;
+}
+.zero {
+    background-image: black;
 }

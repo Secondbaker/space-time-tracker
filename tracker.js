@@ -1,7 +1,7 @@
 import { Timer } from "./timer.js";
 // console.log("Test");
 
-var elapsedTime = 0;
+// var elapsedTime = 0;
 
 //modes
 const Normal = 0;
@@ -20,12 +20,11 @@ var mode = Normal;
 
 var app;
 var timer = new Timer();
+var timerDiv;
 var controls;
 
 var setup = function () {
-    //timer = document.getElementById("timer");
-    console.log(timer);
-    timer.start();
+    timerDiv = document.getElementById("timer");
     console.log(timer);
     setTimeout(() => {  console.log(timer); }, 2000);
 
@@ -33,6 +32,8 @@ var setup = function () {
     controls = document.getElementById("controls");
     console.log(controls);
 
+    app = document.getElementById("app");
+    app.addEventListener("click", tapped);
 
     // startDiv = document.querySelector("#start");
     // const startButton = document.createElement('button');
@@ -73,13 +74,15 @@ var setup = function () {
     // battleEndDiv.appendChild(battleEndButton);
     // battleEndDiv.style.display = 'none';
 
+    // main();
+
 }
 
 window.onload = setup;
 
 var start = function () {
     mode = Normal;
-    elapsedTime = 0;
+    // elapsedTime = 0;
     //console.log(startTime);
     //console.log(elapsedTime);
 
@@ -90,19 +93,29 @@ var start = function () {
     console.log(app.classList);
     controls.classList.add("zero");
 
+    timer.start();
+
     main();
+}
+
+var pause = function () {
+    
+
+    timer.pause();
+
+    
 }
 
 var distortionForming = function () {
     mode = DistortionForming;
     distortionFormingDiv.style.display = 'none';
-    elapsedTime = 0;
+    // elapsedTime = 0;
 }
 
 var distortionFormed = function () {
     mode = DistortionFormed;
     battleDiv.style.display = 'block';
-    elapsedTime = 0;
+    // elapsedTime = 0;
 }
 
 var battle = function () {
@@ -117,7 +130,23 @@ var battleEnd = function () {
     isBattling = false;
 }
 
-var lastFrameTime;
+var tapped = function () {
+    console.log ("tapped");
+    console.log(timer.getState());
+    console.log(Timer.paused);
+    if(timer.getState() == Timer.paused)
+    {
+        console.log("starting");
+        start();
+    }
+    else
+    {
+        console.log("pausing");
+        pause();
+    }
+}
+
+// var lastFrameTime;
 window.main = function () {
     window.requestAnimationFrame(main);
 
@@ -147,9 +176,10 @@ window.main = function () {
     //     timeDiff = 240 - timeDiff;
     // }
 
-    minutes = Math.floor(timeDiff / 60);
-    seconds = timeDiff % 60;
+    var minutes = Math.floor(timer.getTime() / 60);
+    var seconds = timer.getTime() % 60;
+    console.log(timer.getTime());
 
-    timer.innerHTML = (minutes.toString().padStart(2, 0) + ":" + seconds.toString().padStart(2, 0));
-    lastFrameTime = currentFrameTime;
+    timerDiv.innerHTML = (minutes.toString().padStart(2, 0) + ":" + seconds.toString().padStart(2, 0));
+    // lastFrameTime = currentFrameTime;
 }

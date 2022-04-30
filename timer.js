@@ -1,9 +1,13 @@
-const paused = 0;
-const running = 1;
 export class Timer{
+    static paused = 0;
+    static running = 1;
+    static spawnChance = {
+        normal: [10, 20, 20, 25, 25],
+        legendsActive: [20, 10, 20, 25, 25]
+    }
     time = 0;
     tickStart;
-    state = paused;
+    state = Timer.paused;
     constructor()
     {
         this.run();
@@ -18,21 +22,25 @@ export class Timer{
     }  
     start()
     {
-        this.state = running;
+        this.state = Timer.running;
         this.tickStart = Date.now();
     }
     pause()
     {
-        this.state = paused;
+        this.state = Timer.paused;
+    }
+    getState()
+    {
+        return this.state;
     }
     getTime()
     {
-        return this.time;
+        return Math.floor(this.time / 1000);
     }
     async tick()
     {
         // console.log("tick1");
-        if(this.state == running)
+        if(this.state == Timer.running)
         {
             console.log("tick counts");
             var current = Date.now();
