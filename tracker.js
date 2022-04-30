@@ -1,5 +1,6 @@
+import { Timer } from "./timer.js";
 // console.log("Test");
-console.log("Test");
+
 var elapsedTime = 0;
 
 //modes
@@ -18,12 +19,16 @@ var mode = Normal;
 // var battleEndDiv;
 
 var app;
-var timer;
+var timer = new Timer();
 var controls;
 
 var setup = function () {
-    timer = document.getElementById("timer");
+    //timer = document.getElementById("timer");
     console.log(timer);
+    timer.start();
+    console.log(timer);
+    setTimeout(() => {  console.log(timer); }, 2000);
+
 
     controls = document.getElementById("controls");
     console.log(controls);
@@ -117,30 +122,30 @@ window.main = function () {
     window.requestAnimationFrame(main);
 
     //time difference is in milliseconds, so /1000 and floor removes everything ast whole seconds
-    currentFrameTime = Date.now();
+    // currentFrameTime = Date.now();
 
-    if (lastFrameTime != null) {
-        deltaTime = currentFrameTime - lastFrameTime;
-    }
-    else {
-        deltaTime = 0;
-    }
+    // if (lastFrameTime != null) {
+    //     deltaTime = currentFrameTime - lastFrameTime;
+    // }
+    // else {
+    //     deltaTime = 0;
+    // }
 
 
-    if (!isBattling)
-        elapsedTime += deltaTime;
+    // if (!isBattling)
+    //     elapsedTime += deltaTime;
 
-    timeDiff = Math.floor(elapsedTime / 1000);
+    // timeDiff = Math.floor(elapsedTime / 1000);
 
-    if (mode == DistortionForming) {
-        timeDiff = 60 - timeDiff;
-        if (timeDiff <= 0) {
-            distortionFormed();
-        }
-    }
-    else if (mode == DistortionFormed) {
-        timeDiff = 240 - timeDiff;
-    }
+    // if (mode == DistortionForming) {
+    //     timeDiff = 60 - timeDiff;
+    //     if (timeDiff <= 0) {
+    //         distortionFormed();
+    //     }
+    // }
+    // else if (mode == DistortionFormed) {
+    //     timeDiff = 240 - timeDiff;
+    // }
 
     minutes = Math.floor(timeDiff / 60);
     seconds = timeDiff % 60;
