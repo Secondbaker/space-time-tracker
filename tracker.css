@@ -19,5 +19,16 @@
     height: 100%;
 }
 .zero {
-    background-image: black;
+    background-image: linear-gradient(
+  45deg,
+  hsl(0deg 0% 0%) 20%,
+  hsl(344deg 0% 3%) 53%,
+  hsl(344deg 0% 6%) 57%,
+  hsl(344deg 0% 8%) 58%,
+  hsl(344deg 0% 8%) 60%,
+  hsl(344deg 0% 6%) 66%,
+  hsl(344deg 0% 3%) 77%,
+  hsl(0deg 0% 0%) 100%
+);
+color: white;
 }
